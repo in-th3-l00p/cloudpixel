@@ -20,7 +20,7 @@ class SpriteController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            "name" => "required|max:255|alpha_num",
+            "name" => "required|max:255|alpha_num|unique:sprites,name",
             "width" => "required|numeric|between:1,128",
             "height" => "required|numeric|between:1,128"
         ]);
@@ -36,7 +36,8 @@ class SpriteController extends Controller
      */
     public function show(Sprite $sprite)
     {
-        return view("sprites.show", ["sprite" => $sprite]);
+        dd($sprite);
+        return view("sprites.editor", ["sprite" => $sprite]);
     }
 
     /**
